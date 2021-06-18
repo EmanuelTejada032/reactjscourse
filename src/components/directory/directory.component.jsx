@@ -1,7 +1,7 @@
 import React from 'react'
 import './directory.styles.scss'
 
-import data from '../../directory.data'
+import {sectionsData} from '../../data'
 import MenuItem from '../menu-item/menu-item.component'
 
 class Directory extends React.Component{
@@ -13,7 +13,7 @@ class Directory extends React.Component{
     }
 
     componentDidMount(){
-        this.setState({sections: data}, () => console.log(this.state.sections))
+        this.setState({sections: sectionsData}, () => console.log(this.state.sections))
     }
 
 render(){
