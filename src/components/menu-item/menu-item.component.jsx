@@ -17,4 +17,5 @@ const MenuItem = ({title, imageUrl, size, linkUrl, match, history}) => {
     )
 }
 
-export default withRouter(MenuItem);
+export default withRouter(MenuItem); //gives the menuItem access to the router props, History, match etc
+
