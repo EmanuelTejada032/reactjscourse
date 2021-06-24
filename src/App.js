@@ -7,7 +7,7 @@ import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shoppage/shop-page.component';
 import SignIn from './pages/signin-signup/signin-signup.component';
 import Header from './components/header/header.component'
-import {auth, createProfileWithGoogleAuth} from './firebase/firebase.utils'
+import {auth, createProfileDocument} from './firebase/firebase.utils'
 
 
 
@@ -27,7 +27,7 @@ class App extends React.Component{
       //   currentUser: user
       // })
       if(userAuth){
-       const userRef = await createProfileWithGoogleAuth(userAuth); //We returned a user ref from createProfile function
+       const userRef = await createProfileDocument(userAuth); //We returned a user ref from createProfile function
        userRef.onSnapshot( snapShot => {
          this.setState({
            currentUser: {

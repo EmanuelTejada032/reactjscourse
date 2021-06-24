@@ -13,7 +13,7 @@ const config = {
   }
 
 
-  export const createProfileWithGoogleAuth = async (userAuth, aditionalData) => {
+  export const createProfileDocument = async (userAuth, aditionalData) => {
     if(!userAuth) return; //if there is no user we just return from function
 
     const userRef = await firestore.doc(`users/${userAuth.uid}`); //Get document reference from users collection
