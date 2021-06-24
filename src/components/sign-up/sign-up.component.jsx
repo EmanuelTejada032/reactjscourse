@@ -48,7 +48,6 @@ export default class SignUp extends Component {
         const {email, displayName, password, confirmPassword} = this.state;
         return (
             <div className='sign-up'>
-                <h2>This is a form</h2>
                 <h2 className='title'>I do not have an account yet</h2>
                 <span>Sign in with your email and password</span>
                 <form onSubmit={this.handleSubmit}>
