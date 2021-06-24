@@ -7,7 +7,8 @@ import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shoppage/shop-page.component';
 import SignIn from './pages/signin-signup/signin-signup.component';
 import Header from './components/header/header.component'
-import {auth} from './firebase/firebase.utils'
+import {auth, createProfileWithGoogleAuth} from './firebase/firebase.utils'
+
 
 
 class App extends React.Component{
@@ -22,9 +23,10 @@ class App extends React.Component{
 
   componentDidMount(){
     this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      this.setState({
-        currentUser: user
-      })
+      // this.setState({
+      //   currentUser: user
+      // })
+      createProfileWithGoogleAuth(user);
       console.log(user)
     })
   }
