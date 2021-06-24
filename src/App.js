@@ -22,12 +22,27 @@ class App extends React.Component{
   unsubscribeFromAuth = null;
 
   componentDidMount(){
-    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       // this.setState({
       //   currentUser: user
       // })
-      createProfileWithGoogleAuth(user);
-      console.log(user)
+      if(userAuth){
+       const userRef = await createProfileWithGoogleAuth(userAuth); //We returned a user ref from createProfile function
+       userRef.onSnapshot( snapShot => {
+         this.setState({
+           currentUser: {
+             id: snapShot.id,
+             ...snapShot.data()
+           }
+         }, () => {
+           console.log(this.state.currentUser)
+         })
+        // console.log(snapShot);
+       })
+      }else{
+        this.setState({currentUser: userAuth})
+        console.log('This is the value of userAuth', userAuth)
+      }
     })
   }
 

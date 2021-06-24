@@ -14,12 +14,12 @@ const config = {
 
 
   export const createProfileWithGoogleAuth = async (userAuth, aditionalData) => {
-    if(!userAuth) return;
+    if(!userAuth) return; //if there is no user we just return from function
 
-    const userRef = await firestore.doc(`users/${userAuth.uid}`);
-    const userSnapShot = await userRef.get()
+    const userRef = await firestore.doc(`users/${userAuth.uid}`); //Get document reference from users collection
+    const userSnapShot = await userRef.get()  //Get actual data from the document to check if exist
 
-    if(!userSnapShot.exists){
+    if(!userSnapShot.exists){  //If the doc exist in the collection we create a user doc into that collection
       const {displayName, email} = userAuth;
       const createdAt = new Date();
       try{
@@ -33,7 +33,7 @@ const config = {
         console.log(err)
       }   
     }
-    return userRef;
+    return userRef; //Return the reference for future use
   }
 
   firebase.initializeApp(config);
